@@ -1,3 +1,3 @@
-module github.com/kurehajime/bastion
+module github.com/kurehajime/fumidai
 
 go 1.20
