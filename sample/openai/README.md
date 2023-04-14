@@ -35,6 +35,12 @@ The request thrown to the springboard is thrown to OpenAI's API, and return.
 
 ## Try Python
 
+pip
+
+```
+pip install openai
+```
+
 If you are using the official OpenAPI library, you can change `api_base`.
 
 ```
