@@ -27,6 +27,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	path, _ := url.Parse(r.URL.Path)
 	resolvedURL := base.ResolveReference(path)
 	req, _ := http.NewRequest(*method, resolvedURL.String(), r.Body)
+
 	req.Header.Set("Content-Type", r.Header.Get("Content-Type"))
 	for _, header := range headers {
 		kv := strings.Split(header, ":")
@@ -38,13 +39,14 @@ func handle(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf("Remote Error:%s", err), http.StatusInternalServerError)
 		return
 	}
+
 	defer resp.Body.Close()
 	// レスポンスボディを読み取る
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	w.Header().Set("Content-Type", resp.Header.Get("Content-Type"))
 	_, err = fmt.Fprintln(w, string(body))
 	if err != nil {
 		http.Error(w, fmt.Sprintf("%s", err), http.StatusInternalServerError)
