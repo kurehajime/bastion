@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 )
@@ -22,7 +23,10 @@ func (m *multiValueFlag) Set(value string) error {
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	req, _ := http.NewRequest(*method, url, r.Body)
+	base, _ := url.Parse(baseurl)
+	path, _ := url.Parse(r.URL.Path)
+	resolvedURL := base.ResolveReference(path)
+	req, _ := http.NewRequest(*method, resolvedURL.String(), r.Body)
 	req.Header.Set("Content-Type", r.Header.Get("Content-Type"))
 	for _, header := range headers {
 		kv := strings.Split(header, ":")
@@ -48,7 +52,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 
 var headers multiValueFlag
-var url string
+var baseurl string
 var method *string
 
 func main() {
@@ -60,7 +64,7 @@ func main() {
 	if len(args) < 1 {
 		log.Fatal("url is required")
 	} else {
-		url = args[0]
+		baseurl = args[0]
 	}
 
 	http.HandleFunc("/", handle)

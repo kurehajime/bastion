@@ -14,13 +14,13 @@ Give fumidai a header, a method, and a URL to start.
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPEN_API_KEY" \
   -X "POST"  \
-  https://api.openai.com/v1/chat/completions
+  https://api.openai.com
 ```
 
 POST the Content-Type and request body to fumidai.
 
 ```
-curl http://localhost:8080 \
+curl http://localhost:8080/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "gpt-3.5-turbo",
