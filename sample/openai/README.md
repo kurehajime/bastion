@@ -1,9 +1,9 @@
 
 # Open AI API Example
 
-## Set up a stepping-stone server
-
 For example, when you want the OpenAI API to hide the access token and make the API available.
+
+## Set up a stepping-stone server
 
 Give fumidai a header, a method, and a URL to start.
 
