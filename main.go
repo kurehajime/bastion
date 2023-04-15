@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
@@ -42,7 +42,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 	defer resp.Body.Close()
 	// レスポンスボディを読み取る
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
