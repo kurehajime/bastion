@@ -12,7 +12,6 @@ Give fumidai a header, a method, and a URL to start.
  $ ./fumidai \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPEN_API_KEY" \
-  -X "POST"  \
   https://api.openai.com
 ```
 

@@ -26,7 +26,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	base, _ := url.Parse(baseurl)
 	path, _ := url.Parse(r.URL.Path)
 	resolvedURL := base.ResolveReference(path)
-	req, _ := http.NewRequest(*method, resolvedURL.String(), r.Body)
+	req, _ := http.NewRequest(r.Method, resolvedURL.String(), r.Body)
 
 	req.Header.Set("Content-Type", r.Header.Get("Content-Type"))
 	for _, header := range headers {
@@ -55,12 +55,10 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 var headers multiValueFlag
 var baseurl string
-var method *string
 
 func main() {
 	flag.Var(&headers, "H", "headers (can be used multiple times)")
 	port := flag.Int("port", 8080, "listen port")
-	method = flag.String("X", "GET", "request method")
 	flag.Parse()
 	args := flag.Args()
 	if len(args) < 1 {
