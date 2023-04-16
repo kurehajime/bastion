@@ -4,4 +4,4 @@ A stepping-stone server that provides APIs while hiding access tokens
 
 ## Example
 
-[Open AI API Example](sample\openai\README.md)
+[Open AI API Example](https://github.com/kurehajime/fumidai/tree/main/sample/openai)
