@@ -10,7 +10,6 @@ Give fumidai a header, a method, and a URL to start.
 ```
  $ export OPEN_API_KEY=YOUTR_ACCESS_TOKEN
  $ ./fumidai \
-  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPEN_API_KEY" \
   https://api.openai.com
 ```
