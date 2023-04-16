@@ -1,6 +1,9 @@
 # fumidai
 
-A stepping-stone server that provides APIs while hiding access tokens
+A stepping-stone server that provides APIs while hiding access tokens.
+
+By accessing the API via fumidai, each server does not need to know the access token.
+However, it is not recommended to expose this server to outside parties.
 
 ## Usage
 
